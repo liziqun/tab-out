@@ -5,13 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tab Out</title>
 
-  <!-- Google Fonts: Newsreader (for headings/numbers) + DM Sans (for body text) -->
+  <!-- Google Fonts: Newsreader (for headings/numbers) + DM Sans (for body text) + Inter + Space Grotesk (for themes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Theme Switcher -->
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-trigger" id="themeTrigger" aria-label="Switch theme">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+  </button>
+  <div class="theme-dropdown" id="themeDropdown">
+    <button class="theme-option active" data-theme="auto">
+      <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #0d1117)"></span>
+      <span>Auto</span>
+      <span class="theme-check">✓</span>
+    </button>
+    <button class="theme-option" data-theme="default">
+      <span class="theme-dot" style="background: linear-gradient(135deg, #f8f5f0, #c8713a)"></span>
+      <span>Minimal</span>
+      <span class="theme-check">✓</span>
+    </button>
+    <button class="theme-option" data-theme="cyberpunk">
+      <span class="theme-dot" style="background: linear-gradient(135deg, #0a0a0f, #00f0ff)"></span>
+      <span>Cyber</span>
+      <span class="theme-check">✓</span>
+    </button>
+  </div>
+</div>
+
 <div class="container">
 
 
@@ -136,7 +164,7 @@
       </div>
     </div>
     <div class="last-refresh">
-      <span style="color: var(--muted); font-size: 11px;"><a href="https://github.com/zarazhangrui/tab-out" target="_top" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">Tab Out</a></span>
+      <span style="color: var(--muted); font-size: 11px;"><a href="https://github.com/liziqun/tab-out" target="_blank" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">Tab Out</a></span>
     </div>
   </footer>
 

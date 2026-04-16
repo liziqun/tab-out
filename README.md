@@ -1,91 +1,120 @@
 # Tab Out
 
-**Keep tabs on your tabs.**
+**掌控你的标签页。**
 
-Tab Out is a Chrome extension that replaces your new tab page with a dashboard of everything you have open. Tabs are grouped by domain, with homepages (Gmail, X, LinkedIn, etc.) pulled into their own group. Close tabs with a satisfying swoosh + confetti.
+Tab Out 是一款 Chrome 新标签页扩展，将你的新标签页转变为简洁高效的项目仪表盘。帮助你在繁杂的浏览器标签中保持专注与条理。
 
-No server. No account. No external API calls. Just a Chrome extension.
-
----
-
-## Install with a coding agent
-
-Send your coding agent (Claude Code, Codex, etc.) this repo and say **"install this"**:
-
-```
-https://github.com/zarazhangrui/tab-out
-```
-
-The agent will walk you through it. Takes about 1 minute.
+无服务器。无账户。无外部 API 调用。只是一个纯粹的 Chrome 扩展。
 
 ---
 
-## Features
+## 功能特性
 
-- **See all your tabs at a glance** on a clean grid, grouped by domain
-- **Homepages group** pulls Gmail inbox, X home, YouTube, LinkedIn, GitHub homepages into one card
-- **Close tabs with style** with swoosh sound + confetti burst
-- **Duplicate detection** flags when you have the same page open twice, with one-click cleanup
-- **Click any tab to jump to it** across windows, no new tab opened
-- **Save for later** bookmark tabs to a checklist before closing them
-- **Localhost grouping** shows port numbers next to each tab so you can tell your vibe coding projects apart
-- **Expandable groups** show the first 8 tabs with a clickable "+N more"
-- **100% local** your data never leaves your machine
-- **Pure Chrome extension** no server, no Node.js, no npm, no setup beyond loading the extension
+- **Google 搜索栏** — 页面顶部集成 Google 搜索入口，快速发起搜索
+- **标签页仪表盘** — 按域名分组展示当前打开的标签页，一目了然
+- **主页分组** — 将 Gmail、X、YouTube、LinkedIn、GitHub 等主页归类到同一卡片
+- **优雅关闭** — 关闭标签页时伴随音效与彩纸动画
+- **重复检测** — 自动标记重复打开的页面，一键清理
+- **稍后阅读** — 将标签页保存到待办清单，稍后再处理
+- **本地端口分组** — 显示端口号，轻松区分本地开发项目
+- **可展开分组** — 首屏展示前 8 个标签，点击「+N more」展开更多
+- **100% 本地运行** — 数据永不离开你的设备
 
 ---
 
-## Manual Setup
+## 主题风格
 
-**1. Clone the repo**
+Tab Out 提供三套精心设计的主题风格，右上角调色盘图标可随时切换：
+
+| 主题 | 说明 |
+|------|------|
+| **Auto**（默认） | 跟随系统深浅色模式自动切换。浅色模式采用 Notion 风格，深色模式采用 Dark Minimal 风格 |
+| **Minimal** | 暖色调经典风格，米色纸张质感，琥珀色点缀，DM Sans + Newsreader 字体组合 |
+| **Cyber** | 赛博朋克风格，深紫背景配霓虹青光，扫描线特效，卡片悬停发光，Space Grotesk 字体 |
+
+主题选择会保存到 localStorage，下次打开自动应用。
+
+---
+
+## 截图
+
+<!-- 在此处添加截图 -->
+> 📸 截图待补充：主界面、主题切换、搜索栏
+
+---
+
+## 安装方法
+
+### 方式一：手动安装（开发者模式）
+
+**1. 克隆仓库**
 
 ```bash
-git clone https://github.com/zarazhangrui/tab-out.git
+git clone https://github.com/liziqun/tab-out.git
 ```
 
-**2. Load the Chrome extension**
+**2. 加载 Chrome 扩展**
 
-1. Open Chrome and go to `chrome://extensions`
-2. Enable **Developer mode** (top-right toggle)
-3. Click **Load unpacked**
-4. Navigate to the `extension/` folder inside the cloned repo and select it
+1. 打开 Chrome 浏览器，访问 `chrome://extensions`
+2. 开启右上角的 **开发者模式**
+3. 点击 **加载已解压的扩展程序**
+4. 选择项目中的 `extension/` 文件夹
 
-**3. Open a new tab**
+**3. 打开新标签页**
 
-You'll see Tab Out.
+打开一个新标签页，即可看到 Tab Out 仪表盘。
 
 ---
 
-## How it works
+## 工作原理
 
 ```
-You open a new tab
-  -> Tab Out shows your open tabs grouped by domain
-  -> Homepages (Gmail, X, etc.) get their own group at the top
-  -> Click any tab title to jump to it
-  -> Close groups you're done with (swoosh + confetti)
-  -> Save tabs for later before closing them
+打开新标签页
+  → Tab Out 展示当前打开的标签页（按域名分组）
+  → 主页（Gmail、X 等）归入顶部专属分组
+  → 点击任意标签标题直接跳转
+  → 关闭已完成的分组（伴随音效与彩纸动画）
+  → 保存稍后处理的标签页
 ```
 
-Everything runs inside the Chrome extension. No external server, no API calls, no data sent anywhere. Saved tabs are stored in `chrome.storage.local`.
+所有功能都在扩展内运行，无需外部服务器、无需 API 调用、数据不会发送到任何地方。保存的标签页存储在 `chrome.storage.local` 中。
 
 ---
 
-## Tech stack
+## 技术栈
 
-| What | How |
-|------|-----|
-| Extension | Chrome Manifest V3 |
-| Storage | chrome.storage.local |
-| Sound | Web Audio API (synthesized, no files) |
-| Animations | CSS transitions + JS confetti particles |
-
----
-
-## License
-
-MIT
+| 组件 | 技术 |
+|------|------|
+| 扩展框架 | Chrome Manifest V3 |
+| 数据存储 | chrome.storage.local / localStorage |
+| 音效 | Web Audio API（程序合成，无文件） |
+| 动画 | CSS 过渡 + JS 彩纸粒子 |
+| 依赖 | 无框架，纯 HTML / CSS / JavaScript |
 
 ---
 
-Built by [Zara](https://x.com/zarazhangrui)
+## 项目结构
+
+```
+tab-out/
+├── extension/           # 扩展核心目录
+│   ├── index.html       # 新标签页页面
+│   ├── app.js           # 主逻辑代码
+│   ├── style.css        # 样式与主题变量
+│   ├── background.js    # Service Worker
+│   ├── manifest.json    # 扩展配置
+│   └── icons/           # 扩展图标
+└── style-demos/         # 主题风格演示页面
+```
+
+---
+
+## 许可证
+
+[MIT License](LICENSE)
+
+---
+
+## 致谢
+
+本项目基于 [zarazhangrui/tab-out](https://github.com/zarazhangrui/tab-out) 二次开发，增加了多主题支持与 Google 搜索入口等功能。

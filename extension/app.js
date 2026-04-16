@@ -1491,6 +1491,49 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ----------------------------------------------------------------
+   THEME SWITCHER — Icon + Dropdown Panel
+   ---------------------------------------------------------------- */
+(function initThemeSwitcher() {
+  const savedTheme = localStorage.getItem('tabout-theme') || 'auto';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  const switcher = document.getElementById('themeSwitcher');
+  const trigger = document.getElementById('themeTrigger');
+  const dropdown = document.getElementById('themeDropdown');
+  if (!switcher || !trigger || !dropdown) return;
+  
+  // Set initial active state
+  dropdown.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+  const activeBtn = dropdown.querySelector(`[data-theme="${savedTheme}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+  
+  // Toggle dropdown
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  
+  // Handle theme click
+  dropdown.addEventListener('click', (e) => {
+    const option = e.target.closest('.theme-option[data-theme]');
+    if (!option) return;
+    const theme = option.dataset.theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('tabout-theme', theme);
+    dropdown.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+    option.classList.add('active');
+    dropdown.classList.remove('open');
+  });
+  
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!switcher.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
+})();
+
+/* ----------------------------------------------------------------
    INITIALIZE
    ---------------------------------------------------------------- */
 renderDashboard();

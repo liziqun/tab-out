@@ -4,7 +4,7 @@
    also updating the mockup. This is the approved design.
    ============================================================ */
 
-:root {
+:root, [data-theme="default"] {
   --ink: #1a1613;
   --paper: #f8f5f0;
   --warm-gray: #e8e2da;
@@ -18,12 +18,156 @@
   --status-abandoned: #b35a5a;
   --card-bg: #fffdf9;
   --shadow: rgba(26, 22, 19, 0.06);
+  /* 新增通用变量 */
+  --border-color: #e8e2da;
+  --hover-bg: rgba(26, 22, 19, 0.04);
+  --search-bg: #fffdf9;
+  --search-border: #e8e2da;
+  --search-focus-border: #c8713a;
+  --search-focus-shadow: rgba(200, 113, 58, 0.2);
+  --badge-bg: rgba(200, 113, 58, 0.1);
+  --badge-text: #c8713a;
+  --close-color: #b35a5a;
+  --close-hover-bg: rgba(179, 90, 90, 0.1);
+  --font-primary: 'DM Sans', sans-serif;
+  --font-display: 'Newsreader', serif;
+  --card-radius: 8px;
+  --transition-speed: 0.2s;
+}
+
+/* Auto 主题 - 浅色模式（Notion 样式） */
+[data-theme="auto"] {
+  --ink: #37352f;
+  --paper: #ffffff;
+  --warm-gray: rgba(55, 53, 47, 0.09);
+  --muted: #787774;
+  --accent-amber: #2eaadc;
+  --accent-sage: #0f7b6c;
+  --accent-slate: #2eaadc;
+  --accent-rose: #eb5757;
+  --status-active: #0f7b6c;
+  --status-cooling: #d9730d;
+  --status-abandoned: #eb5757;
+  --card-bg: #ffffff;
+  --shadow: rgba(15, 15, 15, 0.1);
+  --border-color: rgba(55, 53, 47, 0.09);
+  --hover-bg: rgba(55, 53, 47, 0.04);
+  --search-bg: #ffffff;
+  --search-border: rgba(55, 53, 47, 0.16);
+  --search-focus-border: #2eaadc;
+  --search-focus-shadow: rgba(46, 170, 220, 0.3);
+  --badge-bg: rgba(46, 170, 220, 0.1);
+  --badge-text: #2eaadc;
+  --close-color: #eb5757;
+  --close-hover-bg: rgba(235, 87, 87, 0.1);
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --card-radius: 3px;
+  --transition-speed: 0.1s;
+}
+
+/* Auto 主题 - 深色模式（Dark Minimal 样式） */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --ink: #f0f0f0;
+    --paper: #0d1117;
+    --warm-gray: #2e2e2e;
+    --muted: #a0a0a0;
+    --accent-amber: #3b82f6;
+    --accent-sage: #22c55e;
+    --accent-slate: #3b82f6;
+    --accent-rose: #ef4444;
+    --status-active: #22c55e;
+    --status-cooling: #f59e0b;
+    --status-abandoned: #ef4444;
+    --card-bg: #1c1c1e;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --border-color: #2e2e2e;
+    --hover-bg: rgba(255, 255, 255, 0.05);
+    --search-bg: #1c1c1e;
+    --search-border: #3c3c3e;
+    --search-focus-border: #3b82f6;
+    --search-focus-shadow: rgba(59, 130, 246, 0.3);
+    --badge-bg: rgba(59, 130, 246, 0.1);
+    --badge-text: #3b82f6;
+    --close-color: #ef4444;
+    --close-hover-bg: rgba(239, 68, 68, 0.1);
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Inter', sans-serif;
+    --card-radius: 8px;
+    --transition-speed: 0.2s;
+  }
+}
+
+/* Cyberpunk 主题 */
+[data-theme="cyberpunk"] {
+  --ink: #e0e0ff;
+  --paper: #0a0a0f;
+  --warm-gray: rgba(0, 240, 255, 0.1);
+  --muted: #8a8ab0;
+  --accent-amber: #00f0ff;
+  --accent-sage: #b44aff;
+  --accent-slate: #ff00aa;
+  --accent-rose: #ff3366;
+  --status-active: #00f0ff;
+  --status-cooling: #f0ff00;
+  --status-abandoned: #ff3366;
+  --card-bg: rgba(18, 18, 26, 0.85);
+  --shadow: rgba(0, 240, 255, 0.15);
+  --border-color: rgba(0, 240, 255, 0.2);
+  --hover-bg: rgba(0, 240, 255, 0.05);
+  --search-bg: rgba(18, 18, 26, 0.85);
+  --search-border: rgba(0, 240, 255, 0.3);
+  --search-focus-border: #00f0ff;
+  --search-focus-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  --badge-bg: rgba(0, 240, 255, 0.1);
+  --badge-text: #00f0ff;
+  --close-color: #ff3366;
+  --close-hover-bg: rgba(255, 51, 102, 0.1);
+  --font-primary: 'Space Grotesk', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --card-radius: 8px;
+  --transition-speed: 0.15s;
+}
+
+/* 赛博朋克特殊效果 */
+[data-theme="cyberpunk"] body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 240, 255, 0.03) 2px, rgba(0, 240, 255, 0.03) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 卡片霓虹发光 hover */
+[data-theme="cyberpunk"] .mission-card:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+/* 搜索框霓虹发光 */
+[data-theme="cyberpunk"] .search-box:focus-within {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+}
+
+/* 标题文字发光 */
+[data-theme="cyberpunk"] h1 {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+/* 全局过渡效果 */
+body, .mission-card, .search-box, header, footer, .section-header, .page-chip, .badge, .action-btn, .chip-action {
+  transition: background-color var(--transition-speed) ease, 
+              color var(--transition-speed) ease, 
+              border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
@@ -65,7 +209,7 @@ header {
 }
 
 .header-left h1 {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display);
   font-weight: 300;
   font-size: 28px;
   letter-spacing: -0.5px;
@@ -135,7 +279,7 @@ header {
   flex: 1;
   border: none;
   background: transparent;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 15px;
   color: var(--ink);
   outline: none;
@@ -191,7 +335,7 @@ header {
 }
 
 .tab-cleanup-btn {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 12px;
   font-weight: 600;
   padding: 8px 20px;
@@ -258,7 +402,7 @@ header {
 }
 
 .section-header h2 {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 18px;
   font-style: italic;
@@ -289,13 +433,13 @@ header {
 
 .mission-card {
   background: var(--card-bg);
-  border: 1px solid var(--warm-gray);
-  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
   padding: 16px 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -541,7 +685,7 @@ header {
 
 .mission-page-count {
   font-size: 20px;
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display);
   font-weight: 300;
   color: var(--ink);
   line-height: 1;
@@ -563,11 +707,11 @@ header {
 
 .action-btn {
   font-size: 11px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-weight: 500;
   padding: 5px 14px;
   border-radius: 4px;
-  border: 1px solid var(--warm-gray);
+  border: 1px solid var(--border-color);
   background: var(--card-bg);
   color: var(--muted);
   cursor: pointer;
@@ -636,7 +780,7 @@ header {
   transform: translateX(-50%) translateY(80px);
   background: var(--ink);
   color: var(--paper);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 13px;
   font-weight: 500;
   padding: 12px 24px;
@@ -682,7 +826,7 @@ footer {
 }
 
 .stat-num {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display);
   font-size: 28px;
   font-weight: 300;
   color: var(--ink);
@@ -704,7 +848,7 @@ footer {
 }
 
 .refresh-btn {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 11px;
   font-weight: 500;
   color: var(--accent-amber);
@@ -813,7 +957,7 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
 }
 
 .empty-title {
-  font-family: 'Newsreader', serif;
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
@@ -897,7 +1041,7 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
 
 /* "Update now" button — small, filled, sage green */
 .update-banner-btn {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 12px;
   font-weight: 500;
   color: #fff;
@@ -1123,7 +1267,7 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
 }
 
 .archive-toggle {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 12px;
   font-weight: 500;
   color: var(--muted);
@@ -1164,11 +1308,11 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
 }
 
 .archive-search {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-primary);
   font-size: 12px;
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid var(--warm-gray);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   background: var(--card-bg);
   color: var(--ink);
@@ -1219,4 +1363,118 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
   color: var(--muted);
   opacity: 0.6;
   flex-shrink: 0;
+}
+
+/* ================================================================
+   THEME SWITCHER — Icon + Dropdown Panel
+   ================================================================ */
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Trigger button */
+.theme-trigger {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+.theme-trigger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.theme-trigger svg {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.theme-trigger:hover svg {
+  color: var(--ink);
+}
+
+/* Dropdown panel - 固定深色样式，不随主题变化 */
+.theme-dropdown {
+  position: fixed;
+  top: 56px;
+  right: 20px;
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.theme-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Theme option row - 固定样式，不随主题变化 */
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 13px;
+  color: #e0e0e0;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-primary);
+}
+
+.theme-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-option.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Color dot preview */
+.theme-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Check mark - 固定琥珀色，在深色背景上醒目 */
+.theme-check {
+  margin-left: auto;
+  opacity: 0;
+  color: #c8713a;
+  font-size: 12px;
+}
+
+.theme-option.active .theme-check {
+  opacity: 1;
 }
