@@ -283,6 +283,17 @@ async function dismissSavedTab(id) {
   }
 }
 
+/**
+ * deleteSavedTab(id)
+ *
+ * Permanently deletes a saved tab from the deferred array.
+ */
+async function deleteSavedTab(id) {
+  const { deferred = [] } = await chrome.storage.local.get('deferred');
+  const filtered = deferred.filter(t => t.id !== id);
+  await chrome.storage.local.set({ deferred: filtered });
+}
+
 
 /* ----------------------------------------------------------------
    UI HELPERS
@@ -922,7 +933,7 @@ async function renderDeferredColumn() {
   try {
     const { active, archived } = await getSavedTabs();
 
-    // Hide the entire column if there's nothing to show
+    // 没有保存数据时隐藏侧边栏
     if (active.length === 0 && archived.length === 0) {
       column.style.display = 'none';
       return;
@@ -990,16 +1001,19 @@ function renderDeferredItem(item) {
 /**
  * renderArchiveItem(item)
  *
- * Builds HTML for one completed/archived item (simpler: just title + date).
+ * Builds HTML for one completed/archived item (title + date + delete button).
  */
 function renderArchiveItem(item) {
   const ago = item.completedAt ? timeAgo(item.completedAt) : timeAgo(item.savedAt);
   return `
-    <div class="archive-item">
+    <div class="archive-item" data-deferred-id="${item.id}">
       <a href="${item.url}" target="_blank" rel="noopener" class="archive-item-title" title="${(item.title || '').replace(/"/g, '&quot;')}">
         ${item.title || item.url}
       </a>
       <span class="archive-item-date">${ago}</span>
+      <button class="archive-delete" data-action="delete-archive-item" data-deferred-id="${item.id}" title="Delete">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+      </button>
     </div>`;
 }
 
@@ -1340,6 +1354,24 @@ document.addEventListener('click', async (e) => {
     return;
   }
 
+  // ---- Delete an archived item (permanently removes from storage) ----
+  if (action === 'delete-archive-item') {
+    const id = actionEl.dataset.deferredId;
+    if (!id) return;
+
+    await deleteSavedTab(id);
+
+    const item = actionEl.closest('.archive-item');
+    if (item) {
+      item.classList.add('removing');
+      setTimeout(() => {
+        item.remove();
+        renderDeferredColumn();
+      }, 300);
+    }
+    return;
+  }
+
   // ---- Close all tabs in a domain group ----
   if (action === 'close-domain-tabs') {
     const domainId = actionEl.dataset.domainId;
@@ -1532,6 +1564,7 @@ document.addEventListener('keydown', (e) => {
     }
   });
 })();
+
 
 /* ----------------------------------------------------------------
    INITIALIZE

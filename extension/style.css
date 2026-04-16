@@ -1365,6 +1365,35 @@ footer { animation: fadeUp 0.5s ease 0.65s both; }
   flex-shrink: 0;
 }
 
+/* Archive delete button */
+.archive-delete {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 2px;
+  opacity: 0.3;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.archive-delete svg {
+  width: 12px;
+  height: 12px;
+}
+
+.archive-delete:hover {
+  opacity: 1;
+  color: var(--status-abandoned);
+}
+
+/* Slide-out animation for archive items being removed */
+.archive-item.removing {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 /* ================================================================
    THEME SWITCHER — Icon + Dropdown Panel
    ================================================================ */
