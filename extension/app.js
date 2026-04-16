@@ -1477,6 +1477,20 @@ document.addEventListener('input', async (e) => {
 
 
 /* ----------------------------------------------------------------
+   GOOGLE SEARCH — press Enter to search
+   ---------------------------------------------------------------- */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target.id === 'googleSearch') {
+    const query = e.target.value.trim();
+    if (query) {
+      // Navigate to Google search in the current tab
+      window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    }
+  }
+});
+
+
+/* ----------------------------------------------------------------
    INITIALIZE
    ---------------------------------------------------------------- */
 renderDashboard();
