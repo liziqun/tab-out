@@ -34,6 +34,11 @@ Tab Out 提供三套精心设计的主题风格，右上角调色盘图标可随
 
 ---
 
+## 截图
+![alt text](image.png)
+
+---
+
 ## 安装方法
 
 ### 方式一：手动安装（开发者模式）
@@ -88,14 +93,14 @@ git clone https://github.com/liziqun/tab-out.git
 
 ```
 tab-out/
-├── extension/           # 扩展核心目录
-│   ├── index.html       # 新标签页页面
-│   ├── app.js           # 主逻辑代码
-│   ├── style.css        # 样式与主题变量
-│   ├── background.js    # Service Worker
-│   ├── manifest.json    # 扩展配置
-│   └── icons/           # 扩展图标
-└── style-demos/         # 主题风格演示页面
+└── extension/           # 扩展核心目录
+   ├── index.html       # 新标签页页面
+   ├── app.js           # 主逻辑代码
+   ├── style.css        # 样式与主题变量
+   ├── background.js    # Service Worker
+   ├── manifest.json    # 扩展配置
+   └── icons/           # 扩展图标
+
 ```
 
 ---
